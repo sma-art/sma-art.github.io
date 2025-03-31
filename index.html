@@ -1,63 +1,129 @@
-<!DOCTYPE html><html lang="de">
+<!DOCTYPE html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bildergalerie</title>
+    <title>smArts - Graphite Art</title>
     <style>
         body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
             padding: 0;
+            background: url('https://artincontext.org/wp-content/uploads/2022/04/Graffiti-Styles.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
-        .gallery {
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 235, 59, 0.8);
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
-            gap: 15px;
-            padding: 20px;
+            font-size: 2em;
+            color: #d32f2f;
+            z-index: 999;
         }
-        .gallery img {
-            width: 200px;
-            height: auto;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s;
+        .container {
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            display: inline-block;
+            margin: 50px auto;
         }
-        .gallery img:hover {
-            transform: scale(1.1);
+        h1 {
+            font-size: 2.5em;
+            color: #d32f2f;
+            text-shadow: 3px 3px #ffeb3b;
         }
-        .back-button {
-            display: block;
-            margin: 20px auto;
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        nav {
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 10px;
+            font-size: 1.2em;
+            color: #fff;
+            background: linear-gradient(45deg, #d32f2f, #ffeb3b);
+            border: none;
+            border-radius: 10px;
             text-decoration: none;
-            background-color: #222;
-            color: #ffd700;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            transition: background 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .back-button:hover {
-            background-color: #333;
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #d32f2f;
+        }
+        .info {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .btn {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+            .container {
+                width: 90%;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Bildergalerie</h1>
-    <div class="gallery">
-        <a href="https://postimg.cc/rD3409DT" target="_blank"><img src="https://i.postimg.cc/rD3409DT/IMG-20250328-WA0002.jpg" alt="Bild 1"></a>
-        <a href="https://postimg.cc/YhyGZxfF" target="_blank"><img src="https://i.postimg.cc/YhyGZxfF/IMG-20250328-WA0000.jpg" alt="Bild 2"></a>
-        <a href="https://postimg.cc/F7KkT6cm" target="_blank"><img src="https://i.postimg.cc/F7KkT6cm/IMG-20250328-WA0001.jpg" alt="Bild 3"></a>
-        <a href="https://postimg.cc/JHrHV62N" target="_blank"><img src="https://i.postimg.cc/JHrHV62N/IMG-20250328-WA0003.jpg" alt="Bild 4"></a>
-        <a href="https://postimg.cc/fkD99yRV" target="_blank"><img src="https://i.postimg.cc/fkD99yRV/IMG-20250328-WA0004.jpg" alt="Bild 5"></a>
-        <a href="https://postimg.cc/jCcJQTDZ" target="_blank"><img src="https://i.postimg.cc/jCcJQTDZ/IMG-20250328-WA0005.jpg" alt="Bild 6"></a>
-        <a href="https://postimg.cc/0MdK4Rc5" target="_blank"><img src="https://i.postimg.cc/0MdK4Rc5/IMG-20250328-WA0006.jpg" alt="Bild 7"></a>
-        <a href="https://postimg.cc/xJSbgTGF" target="_blank"><img src="https://i.postimg.cc/xJSbgTGF/IMG-20250328-WA0007.jpg" alt="Bild 8"></a>
-        <a href="https://postimg.cc/WDZkMJZk" target="_blank"><img src="https://i.postimg.cc/WDZkMJZk/IMG-20250328-WA0008.jpg" alt="Bild 9"></a>
+    <div id="loader">
+        <h2>Lädt...</h2>
     </div>
-    <a class="back-button" href="index.html">Zurück</a>
+    <div class="container">
+        <h1>Willkommen bei smArts</h1>
+        <p>Exklusive Graphite-Kunstwerke</p>
+        <nav>
+            <a href="1.html" class="btn">Galerie</a>
+            <a href="2.html" class="btn">Über mich</a>
+            <a href="3.html" class="btn">Shop</a>
+            <a href="4.html" class="btn">Kontakt</a>
+        </nav>
+        <section class="info" id="info">
+            <h2>Über smArts</h2>
+            <p>smArts steht für hochwertige Graphite-Kunstwerke, die in einzigartigem Stil gestaltet sind. Unsere Werke verbinden klassische Zeichenkunst mit modernen Graffiti-Elementen und bringen künstlerische Visionen zum Leben.</p>
+        </section>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById("loader").style.display = "none";
+            }, 1500);
+        });
+
+        document.addEventListener("scroll", function() {
+            const infoSection = document.getElementById("info");
+            const position = infoSection.getBoundingClientRect().top;
+            const screenHeight = window.innerHeight;
+            if (position < screenHeight - 50) {
+                infoSection.classList.add("visible");
+            }
+        });
+    </script>
 </body>
 </html>
