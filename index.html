@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE html><html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +12,12 @@
             color: #333;
             font-family: Arial, sans-serif;
             text-align: center;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
         }
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 235, 59, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            color: #d32f2f;
-            z-index: 999;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .container {
             padding: 50px 20px;
@@ -34,6 +25,8 @@
             border-radius: 10px;
             display: inline-block;
             margin: 50px auto;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards 0.5s;
         }
         h1 {
             font-size: 2.5em;
@@ -58,6 +51,8 @@
             border-radius: 10px;
             text-decoration: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards 1s;
         }
         .btn:hover {
             transform: scale(1.1);
@@ -70,12 +65,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .info.visible {
-            opacity: 1;
-            transform: translateY(0);
+            animation: fadeIn 2s ease-in-out forwards 1.5s;
         }
         @media (max-width: 768px) {
             h1 {
@@ -92,9 +82,6 @@
     </style>
 </head>
 <body>
-    <div id="loader">
-        <h2>Lädt...</h2>
-    </div>
     <div class="container">
         <h1>Willkommen bei smArts</h1>
         <p>Exklusive Graphite-Kunstwerke</p>
@@ -109,21 +96,5 @@
             <p>smArts steht für hochwertige Graphite-Kunstwerke, die in einzigartigem Stil gestaltet sind. Unsere Werke verbinden klassische Zeichenkunst mit modernen Graffiti-Elementen und bringen künstlerische Visionen zum Leben.</p>
         </section>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.getElementById("loader").style.display = "none";
-            }, 1500);
-        });
-
-        document.addEventListener("scroll", function() {
-            const infoSection = document.getElementById("info");
-            const position = infoSection.getBoundingClientRect().top;
-            const screenHeight = window.innerHeight;
-            if (position < screenHeight - 50) {
-                infoSection.classList.add("visible");
-            }
-        });
-    </script>
 </body>
 </html>
