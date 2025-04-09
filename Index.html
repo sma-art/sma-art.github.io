@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÖLZ CLIMB QUEST</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #eee;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      color: #0ff;
+      margin-bottom: 10px;
+    }
+    .avatar-select {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border: 3px solid transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .avatar:hover {
+      border-color: #0ff;
+    }
+    .selected {
+      border-color: #f0f;
+    }
+    button {
+      background: #0ff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>TÖLZ CLIMB QUEST</h1>
+  <p>Wähle deinen Avatar:</p>
+  <div class="avatar-select">
+    <img src="https://i.imgur.com/n8SNJgB.png" class="avatar" onclick="selectAvatar(0)">
+    <img src="https://i.imgur.com/Nz8TRZB.png" class="avatar" onclick="selectAvatar(1)">
+    <img src="https://i.imgur.com/GLVy7Px.png" class="avatar" onclick="selectAvatar(2)">
+  </div>
+  <button onclick="saveAvatar()">Start</button>  <script>
+    let selected = null;
+    function selectAvatar(index) {
+      const avatars = document.querySelectorAll('.avatar');
+      avatars.forEach((avatar, i) => {
+        avatar.classList.toggle('selected', i === index);
+      });
+      selected = index;
+    }
+
+    function saveAvatar() {
+      if (selected === null) {
+        alert("Bitte wähle einen Avatar.");
+        return;
+      }
+      localStorage.setItem('climb_avatar', selected);
+      window.location.href = "game.html"; // nächste Seite später erstellen
+    }
+  </script></body>
+</html>
