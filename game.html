@@ -1,1 +1,119 @@
+<!DOCTYPE html><html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TÖLZ CLIMB QUEST - Spiel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #eee;
+      font-family: 'Orbitron', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h1 {
+      color: #0ff;
+      margin-bottom: 10px;
+    }
+    .map {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .zone {
+      width: 120px;
+      height: 120px;
+      background-color: #333;
+      border-radius: 10px;
+      border: 2px solid #0ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .zone:hover {
+      background-color: #444;
+    }
+    .zone.active {
+      background-color: #0ff;
+    }
+    .status {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .status p {
+      margin: 5px 0;
+    }
+    button {
+      background: #0ff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>TÖLZ CLIMB QUEST</h1>
+  <p>Dein Avatar: <span id="avatar-name"></span></p>
+  <div class="map" id="map">
+    <!-- Beispielzonen für die Karte -->
+    <div class="zone" onclick="unlockRoute(1)">Platte</div>
+    <div class="zone" onclick="unlockRoute(2)">Überhang</div>
+    <div class="zone" onclick="unlockRoute(3)">Dach</div>
+    <div class="zone" onclick="unlockRoute(4)">Kamin</div>
+  </div>
+  <div class="status">
+    <p>Punkte: <span id="points">0</span></p>
+    <p>XP: <span id="xp">0</span></p>
+    <p>Sticker: <span id="stickers">0</span></p>
+  </div>
+  <button onclick="completeChallenge()">Challenge abschließen</button>  <script>
+    // Avatar und Punktestand laden
+    let avatar = localStorage.getItem('climb_avatar') || 'Unbekannt';
+    document.getElementById('avatar-name').innerText = avatar === '0' ? 'Plattenheld' : avatar === '1' ? 'Überhangkönig' : 'Dachzauberer';
 
+    let points = localStorage.getItem('points') || 0;
+    let xp = localStorage.getItem('xp') || 0;
+    let stickers = localStorage.getItem('stickers') || 0;
+
+    // Anzeige der aktuellen Werte
+    document.getElementById('points').innerText = points;
+    document.getElementById('xp').innerText = xp;
+    document.getElementById('stickers').innerText = stickers;
+
+    // Funktionen für Interaktivität
+    function unlockRoute(zone) {
+      const zoneElement = document.querySelectorAll('.zone')[zone - 1];
+      zoneElement.classList.toggle('active');
+      // Einfacher Fortschritt - Punkte und XP erhöhen
+      points += 10;
+      xp += 5;
+      localStorage.setItem('points', points);
+      localStorage.setItem('xp', xp);
+      document.getElementById('points').innerText = points;
+      document.getElementById('xp').innerText = xp;
+    }
+
+    // Challenge abschließen
+    function completeChallenge() {
+      stickers += 1;
+      localStorage.setItem('stickers', stickers);
+      document.getElementById('stickers').innerText = stickers;
+      alert('Challenge abgeschlossen! Sticker erhalten!');
+    }
+  </script></body>
+</html>
